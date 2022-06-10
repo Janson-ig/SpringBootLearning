@@ -1,5 +1,8 @@
 <application>
   <component name="FindSettings">
+    <option name="customScope" value="项目 'blog'" />
+    <option name="defaultScopeName" value="项目 'blog'" />
+    <option name="SEARCH_SCOPE" value="项目 'blog'" />
     <mask>*.css</mask>
     <mask>*.html</mask>
     <mask>*.xml</mask>
