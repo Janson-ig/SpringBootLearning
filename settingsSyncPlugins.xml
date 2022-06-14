@@ -2,6 +2,17 @@
   <component name="SettingsSyncPlugins">
     <option name="plugins">
       <map>
+        <entry key="Batch Scripts Support">
+          <value>
+            <PluginData>
+              <option name="dependencies">
+                <set>
+                  <option value="com.intellij.modules.platform" />
+                </set>
+              </option>
+            </PluginData>
+          </value>
+        </entry>
         <entry key="aws.toolkit">
           <value>
             <PluginData>
@@ -11,6 +22,19 @@
                   <option value="org.jetbrains.plugins.yaml" />
                 </set>
               </option>
+            </PluginData>
+          </value>
+        </entry>
+        <entry key="com.ccnode.codegenerator.MyBatisCodeHelperPro">
+          <value>
+            <PluginData>
+              <option name="dependencies">
+                <set>
+                  <option value="com.intellij.modules.java" />
+                  <option value="com.intellij.modules.lang" />
+                </set>
+              </option>
+              <option name="enabled" value="false" />
             </PluginData>
           </value>
         </entry>
