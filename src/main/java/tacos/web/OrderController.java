@@ -1,7 +1,6 @@
 package tacos.web;
 
 import javax.validation.Valid;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -20,8 +19,14 @@ public class OrderController {
         model.addAttribute("order", new Order());
         return "orderForm";
     }
+
     @PostMapping
-    public String processOrder(Order order) {
+    //@Valid注释告诉Spring MVC对Taco对象进行校验，校验时机是在它绑定完表单数据后；若存在校验错误，错误细节捕捉到Errors对象中
+    public String processOrder(@Valid Order order, Errors errors) {
+        //hasErrors方法判断是否有校验错误
+        if (errors.hasErrors()) {
+            return "orderForm";
+        }
         log.info("Order submitted: " + order);
         return "redirect:/";
     }

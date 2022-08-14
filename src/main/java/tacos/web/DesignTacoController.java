@@ -52,11 +52,15 @@ public class DesignTacoController {
     }
 
     @PostMapping
-    public String processDesign(Taco design) {
-    // Save the taco design...
-    // We'll do this in chapter 3
+    //@Valid注释告诉Spring MVC对Taco对象进行校验，校验时机是在它绑定完表单数据后；若存在校验错误，错误细节捕捉到Errors对象中
+    public String processDesign(@Valid Taco design, Errors errors) {
+        //hasErrors方法判断是否有校验错误
+        if (errors.hasErrors()) {
+            return "design";}
+        // Save the taco design...
+        // We'll do this in chapter 3
         log.info("Processing design: " + design);
-        return "redirect:/orders/current"; //返回值代表一个展现给用户的视图。redirect前缀，重定向视图，重定向到相对路径/orders/current
+        return "redirect:/orders/current";
     }
 
 
