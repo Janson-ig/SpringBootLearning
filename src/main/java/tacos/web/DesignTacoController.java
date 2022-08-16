@@ -21,6 +21,7 @@ import tacos.Ingredient;
 import tacos.Ingredient.Type;
 import tacos.data.IngredientRepository;
 
+@Slf4j
 @Controller
 @RequestMapping("/design")
 @SessionAttributes("order")
@@ -34,24 +35,18 @@ public class DesignTacoController {
     @GetMapping
     public String showDesignForm(Model model) {
         List<Ingredient> ingredients = new ArrayList<>();
-        ingredientRepo.findAll().forEach(ingredients::add);
+        ingredientRepo.findAll().forEach(i -> ingredients.add(i));
 
         Type[] types = Ingredient.Type.values();
         for (Type type : types) {
             model.addAttribute(type.toString().toLowerCase(),
                     filterByType(ingredients, type));
         }
+        model.addAttribute("design", new Taco()); //p.149 bug fixed
         return "design";
+
     }
-    private List<Ingredient> filterByType(
-            List<Ingredient>ingredients, Type type) {
-        return ingredients
-                .stream()
-                .filter(x -> x.getType().equals(type))
-                .collect(Collectors.toList());
-    }
-    private static final org.slf4j.Logger log
-            = org.slf4j.LoggerFactory.getLogger(DesignTacoController.class);
+
     @PostMapping
     //@Valid注释告诉Spring MVC对Taco对象进行校验，校验时机是在它绑定完表单数据后；若存在校验错误，错误细节捕捉到Errors对象中
     public String processDesign(@Valid Taco design, Errors errors) {
@@ -62,6 +57,14 @@ public class DesignTacoController {
         // We'll do this in chapter 3
         log.info("Processing design: " + design);
         return "redirect:/orders/current";
+    }
+
+    private List<Ingredient> filterByType(
+            List<Ingredient>ingredients, Type type) {
+        return ingredients
+                .stream()
+                .filter(x -> x.getType().equals(type))
+                .collect(Collectors.toList());
     }
 }
 /*
