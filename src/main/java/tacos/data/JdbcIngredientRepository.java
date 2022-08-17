@@ -1,3 +1,4 @@
+/*
 package tacos.data;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,7 @@ public class JdbcIngredientRepository implements IngredientRepository { //implem
     }
 
     @Override
+    //查询所有的配料信息，将它们放到一个Ingredient对象的集合中
     public Iterable<Ingredient> findAll() {
         //query中可设置任意参数
         //query返回对象的List
@@ -26,11 +28,14 @@ public class JdbcIngredientRepository implements IngredientRepository { //implem
     }
 
     @Override
-    public Ingredient findOne(String id) {
-        //queryForObject()方法返回对象
-        return jdbc.queryForObject("select id, name, type from Ingredient where id=?", this::mapRowToIngredient, id);
+    //根据id，查询单个Ingredient
+    public Ingredient findById(String id) {
+        return jdbc.queryForObject(
+                "select id, name, type from Ingredient where id=?",
+                this::mapRowToIngredient, id);
     }
-    /*
+    */
+/*
     // 显式RowMapper实现fineOne()方法
     @Override
     public Ingredient findOne(String id) {
@@ -45,7 +50,8 @@ public class JdbcIngredientRepository implements IngredientRepository { //implem
                 };
             }, id);
     }
-    */
+    *//*
+
 
     private Ingredient mapRowToIngredient(ResultSet rs, int rowNum) throws SQLException {
         return new Ingredient(
@@ -55,6 +61,7 @@ public class JdbcIngredientRepository implements IngredientRepository { //implem
     }
 
     @Override
+    //保存Ingredient对象
     public Ingredient save(Ingredient ingredient) {
         //update()方法可以执行向数据库写入或更新数据的查询语句
         jdbc.update(
@@ -64,4 +71,4 @@ public class JdbcIngredientRepository implements IngredientRepository { //implem
                 ingredient.getType().toString());
         return ingredient;
     }
-}
+}*/
