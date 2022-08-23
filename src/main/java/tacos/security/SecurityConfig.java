@@ -30,6 +30,6 @@ public class SecurityConfig {
         usersList.add(new User(
                 "woody", encoder.encode("password"),
                 Arrays.asList(new SimpleGrantedAuthority("ROLE_USER"))));
-        return (UserDetailsService) new InMemoryUserDetailsManager(usersList);
+        return new InMemoryUserDetailsManager(usersList);
     }
 }
