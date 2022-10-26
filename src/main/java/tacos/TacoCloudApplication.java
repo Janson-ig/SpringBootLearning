@@ -13,12 +13,15 @@ import tacos.Ingredient.Type;
 public class TacoCloudApplication /*implements WebMvcConfigurer //实现WebMvcConfigurer接口并覆盖addViewController方法*/{
 
     public static void main(String[] args) {
-        SpringApplication.run(TacoCloudApplication.class, args); // 运行应用;run()传递两个参数：1.配置类，2.命令行参数
+        SpringApplication.run(TacoCloudApplication.class, args);
+        // 运行应用;run()传递两个参数：1.配置类，2.命令行参数
     }
+
 /*    @Override
     public void addViewControllers(ViewControllerRegistry registry){
         registry.addViewController("/").setViewName("home");
     }*/
+
     @Bean
     public CommandLineRunner dataLoader(IngredientRepository repo) {
         return new CommandLineRunner() {
