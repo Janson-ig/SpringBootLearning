@@ -14,7 +14,7 @@ import lombok.Data;
 @Data//创建有参构造器
 @Entity//将此类声明为JPA实体
 @Table(name = "Taco_Order") //Order实体应该持久化到数据库名为Taco_Order的表中
-public class Order implements Serializable {
+public class TacoOrder implements Serializable {
 
     private static final long serialVersionUID = 1L;
 

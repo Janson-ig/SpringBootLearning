@@ -1,12 +1,10 @@
 package tacos.web;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import javax.validation.Valid;
-import javax.servlet.http.HttpServletRequest;
-import lombok.extern.slf4j.XSlf4j;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,7 +18,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import tacos.Taco;
 import tacos.Ingredient;
 import tacos.Ingredient.Type;
-import tacos.Order;
+import tacos.TacoOrder;
 import tacos.data.TacoRepository;
 import tacos.data.IngredientRepository;
 
@@ -39,8 +37,8 @@ public class DesignTacoController {
     }
 
    @ModelAttribute(name = "order")
-   public Order order(){
-       return new Order();
+   public TacoOrder order(){
+       return new TacoOrder();
    }
     @ModelAttribute(name = "taco")
     public Taco taco(){
@@ -70,12 +68,12 @@ public class DesignTacoController {
     //@ModelAttribute注解表明它的值来自模型，SpringMVC不会尝试请求参数绑定到它上面
     //检查完错误后，使用注入的TacoRepository保存taco；它将Taco对象保存到session里的Order中
     // 在用户提交订单表单之前，Order对象会一直保存在session中，没有保存到数据库中
-    public String processDesign(@Valid Taco design, Errors errors, @ModelAttribute Order order) {
+    public String processDesign(@Valid Taco design, Errors errors, @ModelAttribute TacoOrder tacoOrder) {
         //hasErrors方法判断是否有校验错误
         if (errors.hasErrors()) {
             return "design";}
         Taco saved = designRepo.save(design);
-        order.addDesign(saved);
+        tacoOrder.addDesign(saved);
         // Save the taco design...
         // We'll do this in chapter 3
         //log.info("Processing design: " + design);

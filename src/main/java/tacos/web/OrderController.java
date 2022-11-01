@@ -2,15 +2,13 @@ package tacos.web;
 
 import javax.validation.Valid;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
-import tacos.Order;
+import tacos.TacoOrder;
 import tacos.data.OrderRepository;
 
 @Controller
@@ -32,12 +30,12 @@ public class OrderController {
     @PostMapping
     //@Valid注释告诉Spring MVC对Taco对象进行校验，校验时机是在它绑定完表单数据后；若存在校验错误，错误细节捕捉到Errors对象中
     //通过表单提交的Order对象（session中持有的Object对象）通过注入的OrderRepository的save()方法进行保存
-    public String processOrder(@Valid Order order, Errors errors, SessionStatus sessionStatus) {
+    public String processOrder(@Valid TacoOrder tacoOrder, Errors errors, SessionStatus sessionStatus) {
         //hasErrors方法判断是否有校验错误
         if (errors.hasErrors()) {
             return "orderForm";
         }
-        orderRepo.save(order);
+        orderRepo.save(tacoOrder);
         //清理订单，重置session
         sessionStatus.setComplete();
         //log.info("Order submitted: " + order);

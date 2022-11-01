@@ -15,6 +15,7 @@ public class WebConfig implements WebMvcConfigurer {
     public void addViewControllers(ViewControllerRegistry registry) {
         //针对“/”路径执行GET请求。这个方法返回ViewControllerRegistration对象，基于该对象调用setViewName()方法——指明当请求“/”的时候转发到“home”视图上
         registry.addViewController("/").setViewName("home");
+        registry.addViewController("/login");
     }
 }
 /*
