@@ -5,10 +5,15 @@ import java.util.List;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Generated;
+import lombok.NoArgsConstructor;
 
 @Data//创建有参构造器
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity//将此类声明为JPA实体
 public class Taco {
 
