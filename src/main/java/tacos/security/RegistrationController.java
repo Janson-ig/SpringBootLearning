@@ -6,9 +6,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import tacos.data.UserRepository;
 
-/**
- * @author 41350
- */
 @Controller
 @RequestMapping("/register")
 public class RegistrationController {

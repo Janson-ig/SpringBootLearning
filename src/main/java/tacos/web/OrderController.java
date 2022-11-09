@@ -26,12 +26,13 @@ public class OrderController {
         //model.addAttribute("order", new Order());
         return "orderForm";
     }
-
     @PostMapping
-    //@Valid注释告诉Spring MVC对Taco对象进行校验，校验时机是在它绑定完表单数据后；若存在校验错误，错误细节捕捉到Errors对象中
-    //通过表单提交的Order对象（session中持有的Object对象）通过注入的OrderRepository的save()方法进行保存
+    /**
+     * @Valid注释告诉Spring MVC对Taco对象进行校验，校验时机是在它绑定完表单数据后；若存在校验错误，错误细节捕捉到Errors对象中
+     * 通过表单提交的Order对象（session中持有的Object对象）通过注入的OrderRepository的save()方法进行保存
+     * hasErrors方法判断是否有校验错误
+     */
     public String processOrder(@Valid TacoOrder tacoOrder, Errors errors, SessionStatus sessionStatus) {
-        //hasErrors方法判断是否有校验错误
         if (errors.hasErrors()) {
             return "orderForm";
         }
