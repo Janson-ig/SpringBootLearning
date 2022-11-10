@@ -62,14 +62,17 @@ public class SecurityConfig {
                 .antMatchers("/", "/**").permitAll()
 
                 /**
-                * 1.and()方法表明完成认证配置，并且准备应用一些额外的HTTP配置（在配置新的部分时，会使用多次and()方法）
-                * 2.调用formLogin()使用自定的login界面
-                * 3.loginPage()指定提供的page路径：当用户没有通过认证并且需要登录时，会重定向到这个路径
+                 * 1.and()方法表明完成认证配置，并且准备应用一些额外的HTTP配置（在配置新的部分时，会使用多次and()方法）
+                 * 2.调用formLogin()使用自定的login界面
+                 * 3.loginPage()指定提供的page路径：当用户没有通过认证并且需要登录时，会重定向到这个路径
+                 * 4.Spring Security监听来自/login路径的请求
+                 * 5.defaultSuccessUrl()：登入成功后，重定向到“/design”界面;加入第二个参数true，用户登入后强制跳转到指定界面，即使在浏览别的界面
                  */
                 .and()
                     .formLogin()
                         .loginPage("/login")
                         .loginProcessingUrl("/authenticate")
+                        .defaultSuccessUrl("/login", true)
                         .usernameParameter("user")
                         .passwordParameter("pwd")
 
