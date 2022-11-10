@@ -32,7 +32,7 @@ public class TacoCloudApplication /*implements WebMvcConfigurer //实现WebMvcCo
                 repo.save(new Ingredient("GRBF", "Ground Beef", Type.PROTEIN));
                 repo.save(new Ingredient("CARN", "Carnitas", Type.PROTEIN));
                 repo.save(new Ingredient("TMTO", "Diced Tomatoes", Type.VEGGIES));
-                repo.save(new Ingredient("LETC", "Lettuce", Type.VEGGIES));
+                repo.save(new Ingredient("LETC", "Lettuce",00 Type.VEGGIES));
                 repo.save(new Ingredient("CHED", "Cheddar", Type.CHEESE));
                 repo.save(new Ingredient("JACK", "Monterrey Jack", Type.CHEESE));
                 repo.save(new Ingredient("SLSA", "Salsa", Type.SAUCE));
