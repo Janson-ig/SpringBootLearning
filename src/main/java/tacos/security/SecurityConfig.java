@@ -75,6 +75,19 @@ public class SecurityConfig {
                         .defaultSuccessUrl("/login", true)
                         .usernameParameter("user")
                         .passwordParameter("pwd")
+                /**
+                * 同时提供传统的用户名-密码登录和第三方登录:
+                */
+                .and()
+                    .oauth2Login()
+                        .loginPage("/login")
+                /**
+                 * 启用logout登出:点击logout时，session被清空，同时登出
+                 * logoutSuccessUrl()：登出后，重定向到指定路径页面
+                 */
+                .and()
+                    .logout()
+                        .logoutSuccessUrl("/")
 
                 .and()
                 .build();
