@@ -24,6 +24,9 @@ public class TacoOrder implements Serializable {
 
     private Date placedAt;//创建日期和时间
 
+    @ManyToOne
+    private User user;
+
     //不满足声明的校验规则时，返回message
     @NotBlank(message = "Name is required")
     private String deliveryName;

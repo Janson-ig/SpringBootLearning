@@ -24,7 +24,6 @@ public class OrderAdminService {
   public void deleteAllOrders() {
       orderRepository.deleteAll();
   }
-
   /**
    * “@PostAuthorize”注解：表达式在调用目标方法并返回之前不会被计算
    *
