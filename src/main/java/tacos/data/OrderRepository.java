@@ -2,6 +2,9 @@ package tacos.data;
 
 import org.springframework.data.repository.CrudRepository;
 import tacos.TacoOrder;
+import tacos.User;
+
+import java.util.List;
 
 public interface OrderRepository extends CrudRepository<TacoOrder, Long> {
 /*    //Order save(Order order);
@@ -10,4 +13,7 @@ public interface OrderRepository extends CrudRepository<TacoOrder, Long> {
     List<Order> findByDeliveryToAndDeliveryCityAllIgnoresCase(String deliveryTo, String deliveryCity); //忽略string对比的大小写
     List<Order> findByDeliveryCityOrderByDeliveryTo(String city);//按照deliveryTo属性排序
     @Query("Order o where o.deliveryCity='Seattle'") List<Order> readOrdersDeliveredInSeattle();//指明方法调用时要执行的查询*/
+
+    List<TacoOrder> findByUserOrderByPlacedAtDesc(User user);
+
 }
