@@ -28,12 +28,14 @@ import java.security.Principal;
 @ConfigurationProperties注解。
 它的prefix属性设置成了taco.orders，这意味着当设置pageSize的时候，我们需要使⽤名为taco.orders.pageSize的配置属性。
  */
-@ConfigurationProperties(prefix="taco.orders")
+//@ConfigurationProperties(prefix="taco.orders")
 public class OrderController {
 
     private OrderRepository orderRepo;
+    private OrderProps props;
     public OrderController(OrderRepository orderRepo){
         this.orderRepo = orderRepo;
+        this.props = props;
     }
     @GetMapping("/current") //指定orderForm方法，处理针对“/orders/current”的HTTP GET请求
     public String orderForm(){
@@ -61,10 +63,8 @@ public class OrderController {
         return "redirect:/";
     }
 
-    private int pageSize = 20;
-    public void setPageSize(int pageSize){
-        this.pageSize = pageSize;
-    }
+    //private int pageSize = 20;
+    //public void setPageSize(int pageSize){
     @GetMapping
     public String ordersForUser(
             @AuthenticationPrincipal User user, Model model) {
@@ -72,7 +72,8 @@ public class OrderController {
         * Pageable是Spring Data根据页号和每页数量选取结果的子集的一种方法。
         * 这里构建PageRequest对象，实现Pageable，请求第一页（序号0）的数据，每页数量20
         */
-        Pageable pageable = PageRequest.of(0, pageSize);
+        //Pageable pageable = PageRequest.of(0, pageSize);
+        Pageable pageable = PageRequest.of(0, props.getPageSize());
         model.addAttribute("orders",
                 orderRepo.findByUserOrderByPlacedAtDesc(user, pageable));
         return "orderList";
